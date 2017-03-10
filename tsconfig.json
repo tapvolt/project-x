@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "jsx" : "react",
+        "typeRoots": [
+            "src/js/@types/",
+            "node_modules/@types"
+        ],
+        "paths": {
+            "*": ["src/js/@types/*"]
+        },
+        "baseUrl": "."
+    },
+    "include": [
+        "src/js/*",
+        "src/js/@types/**/*.d.ts"
+    ]
+}

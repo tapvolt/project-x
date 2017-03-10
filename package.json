@@ -1,0 +1,38 @@
+{
+  "name": "project-x",
+  "version": "1.0.0",
+  "description": "Job seeker diagnostic model",
+  "main": "index",
+  "engines": {
+    "node": "6.2.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "src": "src"
+  },
+  "scripts": {
+    "dev": "concurrent \"npm run tsc:w\" \"npm run lite\" \"./node_modules/.bin/webpack --progress --watch\" ",
+    "tsc:w": "tsc -w",
+    "build": "tsc",
+    "lite": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gareth Jackson",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^7.0.5",
+    "@types/react": "^15.0.14",
+    "@types/react-dom": "^0.14.23",
+    "awesome-typescript-loader": "^3.1.2",
+    "concurrently": "^3.4.0",
+    "source-map-loader": "^0.1.6",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "keymirror": "^0.1.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
