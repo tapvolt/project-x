@@ -11,7 +11,7 @@
     "src": "src"
   },
   "scripts": {
-    "dev": "concurrent \"npm run tsc:w\" \"npm run lite\" \"./node_modules/.bin/webpack --progress --watch\" ",
+    "dev": "concurrent \"npm run tsc:w\" \"npm run lite\" \"./node_modules/.bin/webpack --watch\" ",
     "tsc:w": "tsc -w",
     "build": "tsc",
     "lite": "lite-server",
@@ -26,12 +26,11 @@
     "awesome-typescript-loader": "^3.1.2",
     "concurrently": "^3.4.0",
     "source-map-loader": "^0.1.6",
-    "ts-node": "^2.1.0",
+    "ts-loader": "^2.0.1",
     "typescript": "^2.2.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "keymirror": "^0.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }

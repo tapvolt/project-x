@@ -1,14 +1,14 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-import Questionnaire = require("./components/questionnaire.tsx")
+import Questionnaire = require("./components/questionnaire")
 
 let App = React.createClass({
 
     render: function() {
         return(
             <div className="questionnaire">
-                <Questionnaire/>
+                <Questionnaire />
             </div>
         )
     }

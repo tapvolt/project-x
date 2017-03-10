@@ -1,11 +1,11 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-export default class Questionnnaire extends React.Component<any,any> {
+class Questionnnaire extends React.Component<any,any> {
 
     render() {
-        return(
-            <div>booms</div>
-        )
+        return <div>booms</div>
     }
 }
+
+export = Questionnnaire;
