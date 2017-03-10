@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var ReactDOM = require("react-dom");
-var Questionnaire = require("./components/questionnaire.tsx");
+var Questionnaire = require("./components/questionnaire");
 var App = React.createClass({
     render: function () {
         return (React.createElement("div", { className: "questionnaire" },

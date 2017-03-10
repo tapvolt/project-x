@@ -1,9 +1,21 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/js/app.js',
+    target: 'web',
+    entry: './src/js/app.tsx',
     output: {
         filename: './public/js/app.js'
     },
-    target: 'web'
+    resolve: {
+        extensions: ['.Webpack.js', '.web.js', '.ts', '.js', '.tsx']
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.tsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'ts-loader'
+            }
+        ]
+    }
 };
