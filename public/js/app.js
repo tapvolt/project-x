@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 448);
+/******/ 	return __webpack_require__(__webpack_require__.s = 449);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -40817,7 +40817,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var FontAwesome = __webpack_require__(188);
 var react_bootstrap_1 = __webpack_require__(340);
-var suggestion_1 = __webpack_require__(449);
+var suggestion_1 = __webpack_require__(448);
 var Body = (function (_super) {
     __extends(Body, _super);
     function Body(props) {
@@ -40865,7 +40865,7 @@ var Body = (function (_super) {
         var suggestions = this._getSuggestions();
         return (React.createElement("div", null,
             React.createElement("div", { className: "panel-body" }, comp),
-            React.createElement("div", { className: "panel-body" }, suggestions ? suggestions.map(function (intervention) { return (React.createElement(suggestion_1.default, { key: intervention.id, intervention: intervention })); }) : "")));
+            React.createElement("div", { className: "panel-body" }, suggestions && suggestions.map(function (intervention) { return (React.createElement(suggestion_1.default, { key: intervention.id, intervention: intervention })); }))));
     };
     return Body;
 }(React.Component));
@@ -40963,26 +40963,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(18);
-var ReactGA = __webpack_require__(199);
-var questionnaire_1 = __webpack_require__(201);
-var questionStore_1 = __webpack_require__(200);
-var App = (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super.call(this) || this;
-        ReactGA.initialize("UA-28326096-6");
-        ReactGA.pageview(window.location.pathname);
-        return _this;
+var Suggestion = (function (_super) {
+    __extends(Suggestion, _super);
+    function Suggestion() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    App.prototype.render = function () {
-        return (React.createElement("div", { className: "questionnaire" },
-            React.createElement(questionnaire_1.default, { questions: questionStore_1.default.getQuestions() })));
+    Suggestion.prototype.render = function () {
+        var desc = this.props.intervention.description;
+        return (React.createElement("div", { className: "intervention" }, desc));
     };
-    return App;
+    return Suggestion;
 }(React.PureComponent));
-/** Pow! **/
-ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
+exports.default = Suggestion;
 
 
 /***/ }),
@@ -41003,18 +40995,26 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Suggestion = (function (_super) {
-    __extends(Suggestion, _super);
-    function Suggestion() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var ReactDOM = __webpack_require__(18);
+var ReactGA = __webpack_require__(199);
+var questionnaire_1 = __webpack_require__(201);
+var questionStore_1 = __webpack_require__(200);
+var App = (function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super.call(this) || this;
+        ReactGA.initialize("UA-28326096-6");
+        ReactGA.pageview(window.location.pathname);
+        return _this;
     }
-    Suggestion.prototype.render = function () {
-        var boom = this.props.intervention.description;
-        return (React.createElement("div", { className: "intervention" }, boom));
+    App.prototype.render = function () {
+        return (React.createElement("div", { className: "questionnaire" },
+            React.createElement(questionnaire_1.default, { questions: questionStore_1.default.getQuestions() })));
     };
-    return Suggestion;
+    return App;
 }(React.PureComponent));
-exports.default = Suggestion;
+/** Pow! **/
+ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
 
 
 /***/ })

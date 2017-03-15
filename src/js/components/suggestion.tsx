@@ -9,10 +9,10 @@ interface SuggestionInterface {
 class Suggestion extends React.PureComponent<SuggestionInterface, {}>{
 
     render() {
-        let boom = this.props.intervention.description
+        let desc = this.props.intervention.description;
         return(
             <div className="intervention">
-                {boom}
+                {desc}
             </div>
         )
     }

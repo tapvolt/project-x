@@ -80,9 +80,9 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
                     {comp}
                 </div>
                 <div className="panel-body">
-                    {suggestions ? suggestions.map(intervention => (
+                    {suggestions && suggestions.map(intervention => (
                         <Suggestion key={intervention.id} intervention={intervention}/>
-                    )) : ""}
+                    ))}
                 </div>
             </div>
         )
