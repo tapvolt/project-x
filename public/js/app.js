@@ -17156,6 +17156,7 @@ module.exports = ReactGA;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Question_1 = __webpack_require__(442);
 var Intervention_1 = __webpack_require__(441);
+var questionConstants_1 = __webpack_require__(451);
 var QuestionStore = (function () {
     function QuestionStore() {
     }
@@ -17172,7 +17173,7 @@ var QuestionStore = (function () {
         }
     };
     QuestionStore._createQuestion = function (rawQuestion) {
-        return new Question_1.default(rawQuestion.id, rawQuestion.variable, rawQuestion.heading, rawQuestion.type, QuestionStore._createIntervention(rawQuestion.agree), QuestionStore._createIntervention(rawQuestion.partial), QuestionStore._createIntervention(rawQuestion.disagree));
+        return new Question_1.default(rawQuestion.id, rawQuestion.variable, rawQuestion.heading, rawQuestion.kind, QuestionStore._createIntervention(rawQuestion.agree), QuestionStore._createIntervention(rawQuestion.partial), QuestionStore._createIntervention(rawQuestion.disagree));
     };
     return QuestionStore;
 }());
@@ -17181,7 +17182,7 @@ QuestionStore._questions = [
         id: 1,
         variable: 15,
         heading: "The JS does not have a health condition or disability which may affect their employment chances and requires no support",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Green Light Thinking Workshop" },
@@ -17206,7 +17207,7 @@ QuestionStore._questions = [
         id: 2,
         variable: 10,
         heading: "The JS does not have any social barriers which will prevent her/him in finding a job easily",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Confidence building" },
@@ -17227,7 +17228,7 @@ QuestionStore._questions = [
         id: 3,
         variable: 15,
         heading: "The JS has a good range of relevant previous work experience and a current cv that supports achievement of job goals",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Voluntary work as a stepping stone workshop" },
@@ -17247,7 +17248,7 @@ QuestionStore._questions = [
         id: 4,
         variable: 5,
         heading: "The JS educational background is relevant to and well-aligned with job goals",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Who's Hiring" },
@@ -17263,7 +17264,7 @@ QuestionStore._questions = [
         id: 5,
         variable: 15,
         heading: "The JS has excellent soft skills and would fit well in an organisation",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Communication Colours Workshop" },
@@ -17285,12 +17286,11 @@ QuestionStore._questions = [
         id: 6,
         variable: 5,
         heading: "The JS has excellent vocational skills, relevant vocational qualifications and has attended some relevant vocational training courses",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Voluntary work as a stepping stone workshop" },
             { id: 2, description: "Exploring your job goals" },
-            { id: 3, description: "Exploring your job goals" },
         ],
         disagree: [
             { id: 1, description: "Voluntary work as a stepping stone workshop" },
@@ -17303,7 +17303,7 @@ QuestionStore._questions = [
         id: 7,
         variable: 20,
         heading: "The JS is highly motivated, wants to find a job and is confident in being able to search and apply for jobs",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Effective job search methods workshop" },
@@ -17325,7 +17325,7 @@ QuestionStore._questions = [
         id: 8,
         variable: 15,
         heading: "The JS has clear job goals and the JS expectations align with their experience, salary requirements and work history",
-        type: 'MULTIPLE_CHOICE',
+        kind: questionConstants_1.QuestionKinds.MULTIPLE_CHOICE,
         agree: null,
         partial: [
             { id: 1, description: "Job Compass Workshop" },
@@ -40490,11 +40490,11 @@ exports.default = Intervention;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Question = (function () {
-    function Question(id, variable, heading, type, agree, partial, disagree) {
+    function Question(id, variable, heading, kind, agree, partial, disagree) {
         this.id = id;
         this.variable = variable;
         this.heading = heading;
-        this.type = type;
+        this.kind = kind;
         this.agree = agree;
         this.partial = partial;
         this.disagree = disagree;
@@ -40818,6 +40818,7 @@ var React = __webpack_require__(0);
 var FontAwesome = __webpack_require__(188);
 var react_bootstrap_1 = __webpack_require__(340);
 var suggestion_1 = __webpack_require__(448);
+var questionConstants_1 = __webpack_require__(451);
 var Body = (function (_super) {
     __extends(Body, _super);
     function Body(props) {
@@ -40835,6 +40836,8 @@ var Body = (function (_super) {
         return "groupOptions_" + this.props.question.id;
     };
     Body.prototype._showInterventions = function (e) {
+        /** emit event of data, variable **/
+        console.log('boom %s %s', e.currentTarget.getAttribute('data'), this.props.question.variable);
         this.setState({
             selection: e.currentTarget.getAttribute('data')
         });
@@ -40847,8 +40850,8 @@ var Body = (function (_super) {
     };
     /** @todo Move icon out of form **/
     Body.prototype._getComponentForQuestionType = function () {
-        switch (this.props.question.type) {
-            case 'MULTIPLE_CHOICE':
+        switch (this.props.question.kind) {
+            case questionConstants_1.QuestionKinds.MULTIPLE_CHOICE:
                 var icon = this._getIcon();
                 var group = this._getGroupOptions();
                 return (React.createElement(react_bootstrap_1.FormGroup, { style: { marginBottom: 0 } },
@@ -41015,6 +41018,82 @@ var App = (function (_super) {
 }(React.PureComponent));
 /** Pow! **/
 ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
+
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-2014 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+
+
+/**
+ * Constructs an enumeration with keys equal to their value.
+ *
+ * For example:
+ *
+ *   var COLORS = keyMirror({blue: null, red: null});
+ *   var myColor = COLORS.blue;
+ *   var isColorValid = !!COLORS[myColor];
+ *
+ * The last line could not be performed if the values of the generated enum were
+ * not equal to their keys.
+ *
+ *   Input:  {key1: val1, key2: val2}
+ *   Output: {key1: key1, key2: key2}
+ *
+ * @param {object} obj
+ * @return {object}
+ */
+var keyMirror = function(obj) {
+  var ret = {};
+  var key;
+  if (!(obj instanceof Object && !Array.isArray(obj))) {
+    throw new Error('keyMirror(...): Argument must be an object.');
+  }
+  for (key in obj) {
+    if (!obj.hasOwnProperty(key)) {
+      continue;
+    }
+    ret[key] = key;
+  }
+  return ret;
+};
+
+module.exports = keyMirror;
+
+
+/***/ }),
+/* 451 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var keyMirror = __webpack_require__(450);
+exports.QuestionKinds = keyMirror({
+    MULTIPLE_CHOICE: null
+});
+exports.ActionTypes = keyMirror({
+    MULTIPLE_CHOICE_SELECTION: null
+});
 
 
 /***/ })

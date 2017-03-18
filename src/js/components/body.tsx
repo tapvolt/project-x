@@ -4,6 +4,8 @@ import {FormGroup, Radio} from "react-bootstrap"
 
 import Question from "../models/Question"
 import Suggestion from "./suggestion"
+import Intervention from "../models/Intervention";
+import {QuestionKinds} from "../constants/questionConstants";
 
 interface BodyInterface {
     question: Question
@@ -34,12 +36,15 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
     }
 
     _showInterventions(e: React.FormEvent<any>) {
+        /** emit event of data, variable **/
+        console.log('boom %s %s',  e.currentTarget.getAttribute('data'), this.props.question.variable)
         this.setState({
             selection: e.currentTarget.getAttribute('data')
         })
+
     }
 
-    _getSuggestions() {
+    _getSuggestions():  Array<Intervention> | null {
         if (this.props.question.hasOwnProperty(this.state.selection)) {
             let key = this.state.selection;
             return this.props.question[key];
@@ -48,9 +53,9 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
 
     /** @todo Move icon out of form **/
     _getComponentForQuestionType() {
-        switch (this.props.question.type) {
+        switch (this.props.question.kind) {
 
-            case 'MULTIPLE_CHOICE':
+            case QuestionKinds.MULTIPLE_CHOICE:
                 let icon = this._getIcon();
                 let group = this._getGroupOptions();
                 return(
@@ -79,8 +84,9 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
                 <div className="panel-body">
                     {comp}
                 </div>
+
                 <div className="panel-body">
-                    {suggestions && suggestions.map(intervention => (
+                    {suggestions && suggestions.map(intervention  => (
                         <Suggestion key={intervention.id} intervention={intervention}/>
                     ))}
                 </div>

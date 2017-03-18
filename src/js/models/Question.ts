@@ -5,10 +5,11 @@ export default class Question {
         public id: number,
         public variable: number,
         public heading: string,
-        public type: string,
+        public kind: string,
         public agree: Array<Intervention> | null,
         public partial: Array<Intervention> | null,
-        public disagree: Array<Intervention> | null
+        public disagree: Array<Intervention> | null,
+
     ) { }
  }
 
