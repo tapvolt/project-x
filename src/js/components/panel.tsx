@@ -5,7 +5,7 @@ import Body from "./body"
 import Question from "../models/Question"
 
 interface PanelInterface {
-    question: Question
+    item: Question
 }
 
 class Panel extends React.PureComponent<PanelInterface, {}>{
@@ -13,8 +13,8 @@ class Panel extends React.PureComponent<PanelInterface, {}>{
     render() {
         return(
             <div className="panel panel-primary">
-                <Heading heading={this.props.question.heading}/>
-                <Body question={this.props.question}/>
+                <Heading question={this.props.item.question}/>
+                <Body id={this.props.item.id} input={this.props.item.input}/>
             </div>
         )
     }

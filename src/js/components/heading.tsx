@@ -2,7 +2,7 @@ import * as React from "react"
 let FontAwesome = require("react-fontawesome")
 
 interface HeadingInterface {
-    heading: string
+    question: string
 }
 
 class Heading extends React.Component<HeadingInterface, {}>{
@@ -23,7 +23,7 @@ class Heading extends React.Component<HeadingInterface, {}>{
             <div className="panel-heading">
                 {icon}
                 <span>
-                    {this.props.heading}
+                    {this.props.question}
                 </span>
             </div>
         )

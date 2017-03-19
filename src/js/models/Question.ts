@@ -1,15 +1,11 @@
-import Intervention from "./Intervention"
+import Input from "./Input"
 
 export default class Question {
     constructor (
         public id: number,
         public variable: number,
-        public heading: string,
-        public kind: string,
-        public agree: Array<Intervention> | null,
-        public partial: Array<Intervention> | null,
-        public disagree: Array<Intervention> | null,
-
+        public question: string,
+        public input: Input,
     ) { }
  }
 
