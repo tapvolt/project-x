@@ -237,14 +237,14 @@ export default class QuestionStore {
         }
     ];
 
-    static setQuestion(rawQuestions: any) {
+    static setQuestion(rawQuestions : any) {
     }
 
     static getQuestions() : Array<Question> {
         return this._questions.map(this._createQuestion);
     }
 
-    static _createQuestion(rawQuestion: any) : Question {
+    static _createQuestion(rawQuestion : any) : Question {
         return new Question(
             rawQuestion.id,
             rawQuestion.variable,
@@ -253,15 +253,15 @@ export default class QuestionStore {
         )
     }
 
-    static _createInput(rawInput: any) : Input {
+    static _createInput(rawInput : any) : Input {
         return new Input(
             rawInput.kind,
             QuestionStore._createOptions(rawInput.options)
         );
     }
 
-    static _createOptions(rawOptions: any) : Array<Option> {
-        return rawOptions.map( (rawOption: any) => {
+    static _createOptions(rawOptions : any) : Array<Option> {
+        return rawOptions.map( (rawOption : any) => {
             return new Option(
                 rawOption.id,
                 rawOption.display,

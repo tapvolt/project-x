@@ -17,7 +17,7 @@ class App extends React.PureComponent<any, any> {
     render() {
         return(
             <div className="questionnaire">
-                <Questionnaire questions={QuestionStore.getQuestions()}/>
+                <Questionnaire questions={QuestionStore.getQuestions()} />
             </div>
         )
     }

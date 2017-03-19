@@ -2,15 +2,15 @@
 export default class InterventionStore {
 
     static _interventions = {
-        1: {text: "Assert Yourself"},
-        2: {text: "Assisted job search session with adviser"},
-        3: {text: "Begin CV Template"},
-        4: {text: "Benefits of Work Workshop"},
-        5: {text: "Communication Colours Workshop"},
-        6: {text: "Confidence building"},
-        7: {text: "CV Workshop"},
-        8: {text: "Dream Board Workshop"},
-        9: {text: "Effective job search practice workshop"},
+        1:  {text: "Assert Yourself"},
+        2:  {text: "Assisted job search session with adviser"},
+        3:  {text: "Begin CV Template"},
+        4:  {text: "Benefits of Work Workshop"},
+        5:  {text: "Communication Colours Workshop"},
+        6:  {text: "Confidence building"},
+        7:  {text: "CV Workshop"},
+        8:  {text: "Dream Board Workshop"},
+        9:  {text: "Effective job search practice workshop"},
         10: {text: "Embracing change workshop"},
         11: {text: "Exploring Job Goals Workshop"},
         12: {text: "Exploring your job goals"},
@@ -29,7 +29,11 @@ export default class InterventionStore {
         25: {text: "Identify your transferable skills"},
     };
 
-    static getInterventionText(id: number) {
+    static setInterventions(rawInterventions: any) : void {
+        InterventionStore._interventions = rawInterventions;
+    }
+
+    static getInterventionText(id: number) : string {
         if (InterventionStore._interventions[id]) {
             return InterventionStore._interventions[id].text;
         }

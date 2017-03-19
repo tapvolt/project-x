@@ -13,7 +13,7 @@ class Questionnaire extends React.PureComponent<QuestionnaireInterface, {}> {
         return(
             <div>
                 {this.props.questions.map(question => (
-                    <Panel key={question.id} item={question}/>
+                    <Panel key={question.id} item={question} />
                 ))}
             </div>
         )

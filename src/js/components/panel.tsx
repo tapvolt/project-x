@@ -13,8 +13,8 @@ class Panel extends React.PureComponent<PanelInterface, {}>{
     render() {
         return(
             <div className="panel panel-primary">
-                <Heading question={this.props.item.question}/>
-                <Body id={this.props.item.id} input={this.props.item.input}/>
+                <Heading question={this.props.item.question} />
+                <Body id={this.props.item.id} input={this.props.item.input} />
             </div>
         )
     }
