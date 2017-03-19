@@ -1,11 +1,23 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
 
-class Questionnnaire extends React.Component<any,any> {
+import Panel from "./panel"
+import Question from "../models/Question";
+
+interface QuestionnaireInterface {
+    questions: Array<Question>
+}
+
+class Questionnaire extends React.PureComponent<QuestionnaireInterface, {}> {
 
     render() {
-        return <div>booms</div>
+        return(
+            <div>
+                {this.props.questions.map(question => (
+                    <Panel key={question.id} item={question} />
+                ))}
+            </div>
+        )
     }
 }
 
-export = Questionnnaire;
+export default Questionnaire

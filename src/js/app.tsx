@@ -1,33 +1,30 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
+let ReactGA = require("react-ga");
 
-import Questionnaire = require("./components/questionnaire")
+import Questionnaire from "./components/questionnaire"
+import QuestionStore from "./stores/questionStore"
 
-let App = React.createClass({
+class App extends React.PureComponent<any, any> {
 
-    render: function() {
+    constructor() {
+        super();
+
+        ReactGA.initialize("UA-28326096-6");
+        ReactGA.pageview(window.location.pathname);
+    }
+
+    render() {
         return(
             <div className="questionnaire">
-                <Questionnaire />
+                <Questionnaire questions={QuestionStore.getQuestions()} />
             </div>
         )
     }
+}
 
-});
-
+/** Pow! **/
 ReactDOM.render(
     <App/>,
     document.getElementById("app")
 );
-
-
-{/*<div>*/}
-
-    {/*<div className="panel panel-primary">*/}
-        {/*<div className="panel-heading"> The JS does not have a health condition or disability which may affect their employment chances and requires no support?</div>*/}
-        {/*<div className="panel-body">*/}
-            {/*Panel content*/}
-        {/*</div>*/}
-    {/*</div>*/}
-
-{/*</div>*/}

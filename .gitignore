@@ -1,3 +1,6 @@
 node_modules/*
 .idea/*
 npm-debug.log
+src/**/*.js
+public/css/*.css
+public/js/*.js
