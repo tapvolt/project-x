@@ -5,9 +5,12 @@ import {FormGroup, Radio} from "react-bootstrap"
 import Input from "../models/Input"
 import {InputKinds} from "../constants/questionConstants";
 import SuggestionContainer from "./suggestions/suggestionContainer";
+import AssessmentActions from "../actions/assessmentActions";
+import Option from "../models/Option";
 
 interface BodyInterface {
     id: number,
+    variable: number,
     input: Input
 }
 
@@ -35,13 +38,20 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
         return "groupOptions_" + this.props.id
     }
 
-    _showInterventions(e: React.FormEvent<any>) {
+    _showInterventions(option: Option) {
+
         this.setState({
-            selection: e.currentTarget.getAttribute('data')
-        })
+            selection: option.display
+        });
+        AssessmentActions.calculate(
+            this.props.id,
+            this.props.variable,
+            option.weight, // @todo weight
+            option.display
+        );
     }
 
-    _getInterventions() : number[] | null {
+    _getInterventions(): number[] | null {
         if (this.state.selection) {
             for (let i = 0; i < this.props.input.options.length; i++) {
                 if (this.props.input.options[i].display == this.state.selection) {
@@ -64,8 +74,7 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
                         {this.props.input.options.map(option => (
                             <Radio
                                 key={option.id}
-                                data={option.display}
-                                onClick={this._showInterventions}
+                                onClick={ () => this._showInterventions(option) }
                                 name={group}
                                 inline
                                 style={{paddingRight: 70}}>
@@ -94,7 +103,7 @@ class Body extends React.Component<BodyInterface, {selection: string}>{
                 </div>
 
                 <div className="panel-body">
-                    {interventions && interventions.map(id  => (
+                    {interventions && interventions.map(id => (
                         <SuggestionContainer key={id} value={id} />
                     ))}
                 </div>

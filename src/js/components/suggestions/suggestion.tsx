@@ -11,7 +11,7 @@ class Suggestion extends React.PureComponent<SuggestionInterface, {}>{
         return (
             <FontAwesome
                 name="dot-circle-o"
-                size="1x"
+                size="lg"
                 style={{paddingRight: 10, verticalAlign: "middle"}}
             />
         )
