@@ -1,6 +1,6 @@
 import * as React from "react"
 import Suggestion from "./suggestion";
-import InterventionStore from "../../stores/InterventionStore";
+import InterventionStore from "../../stores/interventionStore";
 
 interface SuggestionContainerInterface {
     value: number
@@ -10,7 +10,6 @@ class SuggestionContainer extends React.PureComponent<SuggestionContainerInterfa
 
     constructor(props : SuggestionContainerInterface) {
         super(props);
-
         this._getIntervention = this._getIntervention.bind(this)
     }
 
